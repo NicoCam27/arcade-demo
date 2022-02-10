@@ -33,20 +33,22 @@ file_path = os.path.dirname(os.path.abspath(__file__))
 os.chdir(file_path)
 
 
-WIDTH = 800
+WIDTH = 1000
 HEIGHT = 600
-SPRITE_SCALING = 0.5
+SPRITE_SCALING = 0.3
 
 class MenuView(arcade.View):
     def on_show(self):
-        arcade.set_background_color(arcade.color.WHITE)
+        arcade.set_background_color(arcade.color.GREEN)
 
     def on_draw(self):
         arcade.start_render()
         arcade.draw_text("Menu Screen", WIDTH / 2, HEIGHT / 2,
                          arcade.color.BLACK, font_size=50, anchor_x="center")
-        arcade.draw_text("Click to advance", WIDTH / 2, HEIGHT / 2 - 75,
-                         arcade.color.GRAY, font_size=20, anchor_x="center")
+        arcade.draw_text("Bienvenido a recollector de monedas", WIDTH / 2, HEIGHT / 2 - 40,
+                         arcade.color.BLACK, font_size=30, anchor_x="center")
+        arcade.draw_text("Haz click para comenzar el juego", WIDTH / 2, HEIGHT / 2 - 75,
+                         arcade.color.BLACK, font_size=20, anchor_x="center")
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
         instructions_view = InstructionView()
@@ -55,14 +57,16 @@ class MenuView(arcade.View):
 
 class InstructionView(arcade.View):
     def on_show(self):
-        arcade.set_background_color(arcade.color.ORANGE_PEEL)
+        arcade.set_background_color(arcade.color.BABY_BLUE)
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_text("Instructions Screen", WIDTH / 2, HEIGHT / 2,
+        arcade.draw_text("Pantalla de Instrucciones", WIDTH / 2, HEIGHT / 2,
                          arcade.color.BLACK, font_size=50, anchor_x="center")
-        arcade.draw_text("Click to advance", WIDTH / 2, HEIGHT / 2 - 75,
-                         arcade.color.GRAY, font_size=20, anchor_x="center")
+        arcade.draw_text("Colecte las monedas", WIDTH / 2, HEIGHT / 2 - 40,
+                         arcade.color.BLACK, font_size=30, anchor_x="center")
+        arcade.draw_text("Haz click para continuar", WIDTH / 2, HEIGHT / 2 - 75,
+                         arcade.color.BLACK, font_size=20, anchor_x="center")
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
         game_view = GameView()
@@ -81,13 +85,15 @@ class GameView(arcade.View):
 
         # Set up the player
         self.score = 0
-        self.player_sprite = arcade.Sprite(":resources:images/animated_characters/female_person/femalePerson_idle.png",
-                                           SPRITE_SCALING)
+        self.player_sprite = arcade.Sprite("danger_turtle.png",
+                                                                                     SPRITE_SCALING)
+#        self.player_sprite = arcade.Sprite(":resources:images/animated_characters/female_person/femalePerson_idle.png",
+#                                           SPRITE_SCALING)
         self.player_sprite.center_x = 50
         self.player_sprite.center_y = 50
         self.player_list.append(self.player_sprite)
 
-        for i in range(5):
+        for i in range(7):
 
             # Create the coin instance
             coin = arcade.Sprite(":resources:images/items/coinGold.png", SPRITE_SCALING / 3)
